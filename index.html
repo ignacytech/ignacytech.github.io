@@ -10,18 +10,32 @@
   <title>Ignacy Tech - Kanał Technologiczny</title>
 
   <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --github-bg: #fff;
+      --github-text: #000;
+    }
+
+    body.light {
+      --bg: #fff;
+      --text: #000;
+      --github-bg: #000;
+      --github-text: #fff;
+    }
+
     body {
       margin: 0;
       padding: 40px;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: #fff;
+      background-color: var(--bg);
+      color: var(--text);
       text-align: center;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .logo {
       width: 150px;
-      height: auto;
       border-radius: 20px;
       margin-bottom: 20px;
       box-shadow: 0 0 15px #58a6ff;
@@ -42,28 +56,34 @@
       display: inline-block;
       padding: 15px 25px;
       margin: 10px;
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
       border-radius: 10px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    a.button:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
     }
 
     .yt { background-color: #ff0000; }
     .dc { background-color: #5865F2; }
     .ig {
-      background: linear-gradient(
-        45deg,
-        #f58529,
-        #dd2a7b,
-        #8134af,
-        #515bd4
-      );
+      background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+    }
+
+    /* GitHub button */
+    .github-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: var(--github-bg);
+      color: var(--github-text);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .github-btn:hover {
+      transform: scale(1.05);
     }
 
     footer {
@@ -77,37 +97,45 @@
       text-decoration: none;
     }
 
-    .lang-btn {
+    .lang-btn, .theme-btn {
       position: fixed;
       top: 20px;
-      right: 20px;
       padding: 8px 12px;
       border-radius: 8px;
       border: none;
       font-weight: bold;
       cursor: pointer;
     }
+
+    .lang-btn { right: 20px; }
+    .theme-btn { left: 20px; }
   </style>
 </head>
 
 <body>
 
-<!-- Language button -->
+<!-- Buttons -->
+<button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 <button class="lang-btn" onclick="toggleLang()" id="langBtn">PL</button>
 
-<!-- Logo -->
+<!-- GitHub -->
+<a id="githubBtn"
+   class="github-btn"
+   href="https://github.com/ignacytech/ignacytech.github.io"
+   target="_blank">
+  Repozytorium GitHub
+</a>
+
+<!-- Content -->
 <img src="channels4_profile.jpg" alt="Ignacy Tech Logo" class="logo">
 
-<!-- Title -->
 <h1>Ignacy Tech</h1>
 <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
 
-<!-- Social buttons -->
 <a class="button yt" href="https://www.youtube.com/" target="_blank">YouTube</a>
 <a class="button dc" href="https://discord.gg/" target="_blank">Discord</a>
 <a class="button ig" href="https://www.instagram.com/" target="_blank">Instagram</a>
 
-<!-- Footer -->
 <footer>
   © 2026 Ignacy Tech •
   <a href="privacy.html" id="privacyLink">Polityka prywatności</a>
@@ -115,10 +143,17 @@
 
 <script>
   let lang = "pl";
+  let theme = "dark";
 
   function toggleLang() {
     lang = lang === "pl" ? "en" : "pl";
     updateLang();
+  }
+
+  function toggleTheme() {
+    theme = theme === "dark" ? "light" : "dark";
+    document.body.classList.toggle("light");
+    themeBtn.innerText = theme === "dark" ? "🌙" : "☀️";
   }
 
   function updateLang() {
@@ -129,6 +164,7 @@
       desc.innerText =
         "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
       privacyLink.innerText = "Polityka prywatności";
+      githubBtn.innerText = "Repozytorium GitHub";
     } else {
       document.documentElement.lang = "en";
       document.title = "Ignacy Tech - Technology Channel";
@@ -136,6 +172,7 @@
       desc.innerText =
         "Welcome to the official Ignacy Tech YouTube channel website!";
       privacyLink.innerText = "Privacy Policy";
+      githubBtn.innerText = "GitHub Repository";
     }
   }
 
