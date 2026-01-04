@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <title>Ignacy Tech - Kanał Technologiczny</title>
 
   <style>
@@ -42,11 +46,25 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 10px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    a.button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     .yt { background-color: #ff0000; }
     .dc { background-color: #5865F2; }
-    .ig { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
+    .ig {
+      background: linear-gradient(
+        45deg,
+        #f58529,
+        #dd2a7b,
+        #8134af,
+        #515bd4
+      );
+    }
 
     footer {
       margin-top: 60px;
