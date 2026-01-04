@@ -13,19 +13,29 @@
     :root {
       --bg: #000;
       --text: #fff;
+
       --github-bg: #fff;
       --github-text: #000;
+
       --theme-btn-bg: #fff;
       --theme-btn-text: #000;
+
+      --lang-btn-bg: #fff;
+      --lang-btn-text: #000;
     }
 
     body.light {
       --bg: #fff;
       --text: #000;
+
       --github-bg: #000;
       --github-text: #fff;
+
       --theme-btn-bg: #000;
       --theme-btn-text: #fff;
+
+      --lang-btn-bg: #000;
+      --lang-btn-text: #fff;
     }
 
     body {
@@ -108,25 +118,28 @@
     }
 
     /* Top buttons */
-    .lang-btn, .theme-btn {
+    .lang-btn,
+    .theme-btn {
       position: fixed;
       top: 20px;
       padding: 8px 12px;
       border-radius: 8px;
       border: none;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-    }
-
-    .lang-btn {
-      right: 20px;
     }
 
     .theme-btn {
       left: 20px;
       background-color: var(--theme-btn-bg);
       color: var(--theme-btn-text);
+    }
+
+    .lang-btn {
+      right: 20px;
+      background-color: var(--lang-btn-bg);
+      color: var(--lang-btn-text);
     }
   </style>
 </head>
