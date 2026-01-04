@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact – Ignacy Tech</title>
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .contact-box {
+      background: #161b22;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      color: #58a6ff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1em;
+    }
+
+    .email-box {
+      background: #0d1117;
+      padding: 12px;
+      border-radius: 10px;
+      font-family: monospace;
+      margin-bottom: 15px;
+      word-break: break-all;
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: white;
+      color: black;
+      transition: transform 0.2s ease, opacity 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .back {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #8b949e;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contact-box">
+    <h1>Contact</h1>
+    <p>Business & collaboration</p>
+
+    <div class="email-box" id="email">
+      kanal.jozwinski@gmail.com
+    </div>
+
+    <button onclick="copyEmail()">📋 Copy email</button>
+
+    <a href="index.html" class="back">← Back to homepage</a>
+  </div>
+
+  <script>
+    function copyEmail() {
+      const email = "kanal.jozwinski@gmail.com";
+      navigator.clipboard.writeText(email);
+      alert("Email copied to clipboard!");
+    }
+  </script>
+
+</body>
+</html>
