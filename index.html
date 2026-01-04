@@ -7,33 +7,32 @@
 
   <style>
     :root {
-      --bg-color: #000000;
-      --text-color: #c9d1d9;
+      --bg: #000;
+      --text: #c9d1d9;
     }
 
     body.light {
-      --bg-color: #ffffff;
-      --text-color: #111111;
+      --bg: #fff;
+      --text: #111;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 40px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: 0.3s;
     }
 
-    /* Corner positions */
-    .top-left, .top-right, .bottom-left {
+    /* corners */
+    .tl, .tr, .bl {
       position: fixed;
       z-index: 10;
     }
-
-    .top-left { top: 20px; left: 20px; }
-    .top-right { top: 20px; right: 20px; }
-    .bottom-left { bottom: 20px; left: 20px; }
+    .tl { top: 20px; left: 20px; }
+    .tr { top: 20px; right: 20px; }
+    .bl { bottom: 20px; left: 20px; }
 
     img.logo {
       width: 150px;
@@ -42,166 +41,137 @@
       box-shadow: 0 0 15px #58a6ff;
     }
 
-    h1 {
-      font-size: 3em;
-      color: #58a6ff;
-    }
+    h1 { color: #58a6ff; font-size: 3em; }
 
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
+    p { font-size: 1.2em; }
 
-    /* Buttons */
-    a.button, button.control-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    /* buttons */
+    .btn {
+      display: inline-block;
       padding: 15px 25px;
       margin: 10px;
-      text-decoration: none;
       font-weight: bold;
       border-radius: 10px;
-      border: none;
+      text-decoration: none;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.3s ease;
-      white-space: nowrap;
+      border: none;
+      transition: 0.2s;
     }
 
-    a.button:hover, button.control-btn:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
+    .btn:hover { transform: scale(1.05); opacity: .9; }
 
-    /* Platform colors */
-    .youtube { background-color: #ff0000; color: #fff; }
-    .discord { background-color: #5865f2; color: #fff; }
+    .youtube { background:#ff0000; color:#fff; }
+    .discord { background:#5865f2; color:#fff; }
     .instagram {
-      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
-      color: #fff;
+      background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+      color:#fff;
     }
 
-    /* Control buttons */
-    button.control-btn {
-      background-color: #444;
-      color: #fff;
+    .control {
+      background:#444;
+      color:#fff;
     }
 
-    body.light button.control-btn {
-      background-color: #ddd;
-      color: #000;
+    body.light .control {
+      background:#ddd;
+      color:#000;
     }
 
-    /* GitHub button */
     .github {
-      background-color: #ffffff;
-      color: #000000;
+      background:#fff;
+      color:#000;
     }
 
     body.light .github {
-      background-color: #000000;
-      color: #ffffff;
+      background:#000;
+      color:#fff;
     }
 
     footer {
       margin-top: 40px;
-      font-size: 0.9em;
       color: #8b949e;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Theme toggle -->
-  <div class="top-left">
-    <button class="control-btn" onclick="toggleTheme()">🌙 Dark</button>
+  <!-- toggles -->
+  <div class="tl">
+    <button id="themeBtn" class="btn control">🌙 Dark</button>
   </div>
 
-  <!-- Language toggle -->
-  <div class="top-right">
-    <button class="control-btn" onclick="toggleLanguage()">🌍 PL</button>
+  <div class="tr">
+    <button id="langBtn" class="btn control">🌍 PL</button>
   </div>
 
-  <!-- GitHub button -->
-  <div class="bottom-left">
-    <a id="ghBtn" class="button github"
+  <!-- github -->
+  <div class="bl">
+    <a id="ghBtn" class="btn github"
        href="https://github.com/ignacytech/ignacytech.github.io"
        target="_blank">
       Repozytorium GitHub
     </a>
   </div>
 
-  <img src="channels4_profile.jpg" alt="Logo Ignacy Tech" class="logo">
+  <!-- content -->
+  <img src="channels4_profile.jpg" class="logo" alt="Ignacy Tech">
 
   <h1>Ignacy Tech</h1>
-  <p id="description">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
+  <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
 
-  <a id="ytBtn" class="button youtube"
-     href="https://www.youtube.com/channel/UCBPIpGz2inVNYAAFuCQIDPQ"
-     target="_blank">
+  <a id="yt" class="btn youtube" target="_blank"
+     href="https://www.youtube.com/channel/UCBPIpGz2inVNYAAFuCQIDPQ">
     📺 Subskrybuj na YouTube
   </a>
 
-  <a id="dcBtn" class="button discord"
-     href="https://discord.gg/CMeZxnKD3a"
-     target="_blank">
+  <a id="dc" class="btn discord" target="_blank"
+     href="https://discord.gg/CMeZxnKD3a">
     💬 Dołącz na Discord
   </a>
 
-  <a id="igBtn" class="button instagram"
-     href="https://www.instagram.com/ignacy_tech/"
-     target="_blank">
+  <a id="ig" class="btn instagram" target="_blank"
+     href="https://www.instagram.com/ignacy_tech/">
     📸 Obserwuj na Instagramie
   </a>
 
-  <footer>
-    © 2026 Ignacy Tech
-  </footer>
+  <footer>© 2026 Ignacy Tech</footer>
 
+  <!-- JS NA KOŃCU – WAŻNE -->
   <script>
-    let currentLang = "pl";
-    let darkMode = true;
+    let lang = "pl";
+    let dark = true;
 
-    function toggleLanguage() {
-      if (currentLang === "pl") {
-        document.documentElement.lang = "en";
-        document.title = "Ignacy Tech - Technology Channel";
-        document.getElementById("description").innerText =
-          "Welcome to the official website of the Ignacy Tech YouTube channel!";
-        document.getElementById("ytBtn").innerText =
-          "📺 Subscribe on YouTube";
-        document.getElementById("dcBtn").innerText =
-          "💬 Join Discord";
-        document.getElementById("igBtn").innerText =
-          "📸 Follow on Instagram";
-        document.getElementById("ghBtn").innerText =
-          "GitHub Repository";
-        document.querySelector(".top-right button").innerText = "🌍 EN";
-        currentLang = "en";
-      } else {
-        document.documentElement.lang = "pl";
-        document.title = "Ignacy Tech - Kanał Technologiczny";
-        document.getElementById("description").innerText =
-          "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
-        document.getElementById("ytBtn").innerText =
-          "📺 Subskrybuj na YouTube";
-        document.getElementById("dcBtn").innerText =
-          "💬 Dołącz na Discord";
-        document.getElementById("igBtn").innerText =
-          "📸 Obserwuj na Instagramie";
-        document.getElementById("ghBtn").innerText =
-          "Repozytorium GitHub";
-        document.querySelector(".top-right button").innerText = "🌍 PL";
-        currentLang = "pl";
-      }
-    }
-
-    function toggleTheme() {
-      darkMode = !darkMode;
+    document.getElementById("themeBtn").onclick = () => {
+      dark = !dark;
       document.body.classList.toggle("light");
-      document.querySelector(".top-left button").innerText =
-        darkMode ? "🌙 Dark" : "☀️ Light";
-    }
+      document.getElementById("themeBtn").innerText =
+        dark ? "🌙 Dark" : "☀️ Light";
+    };
+
+    document.getElementById("langBtn").onclick = () => {
+      if (lang === "pl") {
+        lang = "en";
+        document.title = "Ignacy Tech - Technology Channel";
+        document.getElementById("desc").innerText =
+          "Welcome to the official Ignacy Tech YouTube channel website!";
+        document.getElementById("yt").innerText = "📺 Subscribe on YouTube";
+        document.getElementById("dc").innerText = "💬 Join Discord";
+        document.getElementById("ig").innerText = "📸 Follow on Instagram";
+        document.getElementById("ghBtn").innerText = "GitHub Repository";
+        document.getElementById("langBtn").innerText = "🌍 EN";
+      } else {
+        lang = "pl";
+        document.title = "Ignacy Tech - Kanał Technologiczny";
+        document.getElementById("desc").innerText =
+          "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
+        document.getElementById("yt").innerText = "📺 Subskrybuj na YouTube";
+        document.getElementById("dc").innerText = "💬 Dołącz na Discord";
+        document.getElementById("ig").innerText = "📸 Obserwuj na Instagramie";
+        document.getElementById("ghBtn").innerText = "Repozytorium GitHub";
+        document.getElementById("langBtn").innerText = "🌍 PL";
+      }
+    };
   </script>
 
 </body>
