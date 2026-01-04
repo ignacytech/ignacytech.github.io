@@ -3,175 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ignacy Tech - Kanał Technologiczny</title>
+  <title>Ignacy Tech - Technology Channel</title>
 
   <style>
-    :root {
-      --bg: #000;
-      --text: #c9d1d9;
-    }
-
-    body.light {
-      --bg: #fff;
-      --text: #111;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--text);
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
       text-align: center;
       padding: 40px;
-      transition: 0.3s;
     }
 
-    /* corners */
-    .tl, .tr, .bl {
-      position: fixed;
-      z-index: 10;
-    }
-    .tl { top: 20px; left: 20px; }
-    .tr { top: 20px; right: 20px; }
-    .bl { bottom: 20px; left: 20px; }
+    h1 { color: #58a6ff; }
 
-    img.logo {
-      width: 150px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px #58a6ff;
-    }
-
-    h1 { color: #58a6ff; font-size: 3em; }
-
-    p { font-size: 1.2em; }
-
-    /* buttons */
-    .btn {
+    a.button {
       display: inline-block;
       padding: 15px 25px;
       margin: 10px;
+      color: white;
+      text-decoration: none;
       font-weight: bold;
       border-radius: 10px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: 0.2s;
     }
 
-    .btn:hover { transform: scale(1.05); opacity: .9; }
-
-    .youtube { background:#ff0000; color:#fff; }
-    .discord { background:#5865f2; color:#fff; }
-    .instagram {
-      background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-      color:#fff;
-    }
-
-    .control {
-      background:#444;
-      color:#fff;
-    }
-
-    body.light .control {
-      background:#ddd;
-      color:#000;
-    }
-
-    .github {
-      background:#fff;
-      color:#000;
-    }
-
-    body.light .github {
-      background:#000;
-      color:#fff;
-    }
+    .yt { background: #ff0000; }
+    .dc { background: #5865F2; }
+    .ig { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
 
     footer {
-      margin-top: 40px;
+      margin-top: 50px;
       color: #8b949e;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .overlay.hidden { display: none; }
+
+    /* COOKIE POPUP */
+    .cookie-box {
+      background: #111;
+      padding: 30px;
+      border-radius: 14px;
+      max-width: 500px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+    }
+
+    .cookie-box h2 {
+      margin-top: 0;
+      color: #58a6ff;
+    }
+
+    .cookie-box p {
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+
+    .cookie-actions {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .cookie-actions button {
+      padding: 10px 16px;
+      margin-left: 10px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .agree {
+      background: #238636;
+      color: white;
+    }
+
+    .decline {
+      background: #555;
+      color: white;
+    }
+
+    .cookie-lang {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8em;
+    }
+
+    /* PRIVACY POLICY */
+    #privacy {
+      margin-top: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    #privacy h2 {
+      color: #58a6ff;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- toggles -->
-  <div class="tl">
-    <button id="themeBtn" class="btn control">🌙 Dark</button>
-  </div>
-
-  <div class="tr">
-    <button id="langBtn" class="btn control">🌍 PL</button>
-  </div>
-
-  <!-- github -->
-  <div class="bl">
-    <a id="ghBtn" class="btn github"
-       href="https://github.com/ignacytech/ignacytech.github.io"
-       target="_blank">
-      Repozytorium GitHub
-    </a>
-  </div>
-
-  <!-- content -->
-  <img src="channels4_profile.jpg" class="logo" alt="Ignacy Tech">
-
   <h1>Ignacy Tech</h1>
-  <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
+  <p>Welcome to the official Ignacy Tech website.</p>
 
-  <a id="yt" class="btn youtube" target="_blank"
-     href="https://www.youtube.com/channel/UCBPIpGz2inVNYAAFuCQIDPQ">
-    📺 Subskrybuj na YouTube
-  </a>
+  <a class="button yt" href="https://www.youtube.com/" target="_blank">YouTube</a>
+  <a class="button dc" href="https://discord.gg/" target="_blank">Discord</a>
+  <a class="button ig" href="https://www.instagram.com/" target="_blank">Instagram</a>
 
-  <a id="dc" class="btn discord" target="_blank"
-     href="https://discord.gg/CMeZxnKD3a">
-    💬 Dołącz na Discord
-  </a>
+  <footer>
+    © 2026 Ignacy Tech •
+    <a href="#privacy" style="color:#58a6ff;">Privacy Policy</a>
+  </footer>
 
-  <a id="ig" class="btn instagram" target="_blank"
-     href="https://www.instagram.com/ignacy_tech/">
-    📸 Obserwuj na Instagramie
-  </a>
+  <!-- PRIVACY POLICY -->
+  <section id="privacy">
+    <h2>Privacy Policy</h2>
+    <p>
+      Ignacy Tech respects your privacy. This website does not collect personal
+      data, does not use tracking cookies, and does not use third-party analytics.
+    </p>
 
-  <footer>© 2026 Ignacy Tech</footer>
+    <p>
+      Cookies used on this website are strictly functional and are stored locally
+      in your browser to remember your consent choice.
+    </p>
 
-  <!-- JS NA KOŃCU – WAŻNE -->
+    <p>
+      By accepting cookies, you agree to the use of functional cookies required
+      for the website to operate correctly.
+    </p>
+
+    <p>
+      You can clear your browser cookies at any time to reset your consent.
+    </p>
+  </section>
+
+  <!-- COOKIE OVERLAY -->
+  <div id="cookieOverlay" class="overlay">
+    <div class="cookie-box">
+      <button class="cookie-lang" onclick="toggleCookieLang()">PL</button>
+
+      <h2 id="cookieTitle">Cookie Consent</h2>
+      <p id="cookieText">
+        This website uses functional cookies to ensure proper operation.
+        You must agree or decline cookies to continue using the website.
+        Read our <strong>Privacy Policy</strong> for more information.
+      </p>
+
+      <div class="cookie-actions">
+        <button class="decline" onclick="declineCookies()">I Do Not Agree</button>
+        <button class="agree" onclick="acceptCookies()">I Agree</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    let lang = "pl";
-    let dark = true;
+    let cookieLang = "en";
 
-    document.getElementById("themeBtn").onclick = () => {
-      dark = !dark;
-      document.body.classList.toggle("light");
-      document.getElementById("themeBtn").innerText =
-        dark ? "🌙 Dark" : "☀️ Light";
-    };
+    const overlay = document.getElementById("cookieOverlay");
+    const cookieText = document.getElementById("cookieText");
+    const cookieTitle = document.getElementById("cookieTitle");
+    const langBtn = document.querySelector(".cookie-lang");
 
-    document.getElementById("langBtn").onclick = () => {
-      if (lang === "pl") {
-        lang = "en";
-        document.title = "Ignacy Tech - Technology Channel";
-        document.getElementById("desc").innerText =
-          "Welcome to the official Ignacy Tech YouTube channel website!";
-        document.getElementById("yt").innerText = "📺 Subscribe on YouTube";
-        document.getElementById("dc").innerText = "💬 Join Discord";
-        document.getElementById("ig").innerText = "📸 Follow on Instagram";
-        document.getElementById("ghBtn").innerText = "GitHub Repository";
-        document.getElementById("langBtn").innerText = "🌍 EN";
+    function acceptCookies() {
+      localStorage.setItem("cookieConsent", "accepted");
+      overlay.classList.add("hidden");
+    }
+
+    function declineCookies() {
+      localStorage.setItem("cookieConsent", "declined");
+      alert("You must accept cookies to use this website.");
+    }
+
+    function toggleCookieLang() {
+      if (cookieLang === "en") {
+        cookieLang = "pl";
+        langBtn.innerText = "PL";
+        cookieTitle.innerText = "Zgoda na pliki cookies";
+        cookieText.innerText =
+          "Ta strona używa plików cookies w celach funkcjonalnych. Aby korzystać ze strony, musisz wyrazić zgodę lub odmówić. Sprawdź naszą Politykę Prywatności.";
       } else {
-        lang = "pl";
-        document.title = "Ignacy Tech - Kanał Technologiczny";
-        document.getElementById("desc").innerText =
-          "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
-        document.getElementById("yt").innerText = "📺 Subskrybuj na YouTube";
-        document.getElementById("dc").innerText = "💬 Dołącz na Discord";
-        document.getElementById("ig").innerText = "📸 Obserwuj na Instagramie";
-        document.getElementById("ghBtn").innerText = "Repozytorium GitHub";
-        document.getElementById("langBtn").innerText = "🌍 PL";
+        cookieLang = "en";
+        langBtn.innerText = "EN";
+        cookieTitle.innerText = "Cookie Consent";
+        cookieText.innerText =
+          "This website uses functional cookies to ensure proper operation. You must agree or decline cookies to continue using the website. Read our Privacy Policy for more information.";
       }
-    };
+    }
+
+    if (localStorage.getItem("cookieConsent") === "accepted") {
+      overlay.classList.add("hidden");
+    }
   </script>
 
 </body>
