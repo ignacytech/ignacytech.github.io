@@ -8,19 +8,15 @@
   <style>
     body {
       margin: 0;
+      padding: 40px;
       font-family: 'Segoe UI', sans-serif;
       background-color: #000;
       color: #fff;
       text-align: center;
-      padding: 40px;
     }
 
-    h1 { color: #58a6ff; }
-
-    a {
-      color: #58a6ff;
-      text-decoration: none;
-    }
+    h1 { color: #58a6ff; font-size: 3em; }
+    p { font-size: 1.2em; }
 
     a.button {
       display: inline-block;
@@ -34,14 +30,15 @@
 
     .yt { background: #ff0000; }
     .dc { background: #5865F2; }
-    .ig { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+    .ig { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
 
     footer {
       margin-top: 50px;
       color: #8b949e;
     }
 
-    /* LANGUAGE BUTTON */
+    footer a { color: #58a6ff; text-decoration: none; }
+
     .lang-btn {
       position: fixed;
       top: 20px;
@@ -53,8 +50,8 @@
       cursor: pointer;
     }
 
-    /* PRIVACY NOTICE */
-    .notice {
+    /* Privacy Notice */
+    .privacy-notice {
       position: fixed;
       bottom: 20px;
       left: 50%;
@@ -65,26 +62,21 @@
       border-radius: 14px;
       max-width: 520px;
       width: 90%;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
       z-index: 999;
+      text-align: left;
     }
 
-    .notice.hidden {
-      display: none;
-    }
+    .privacy-notice.hidden { display: none; }
 
-    .notice h3 {
+    .privacy-notice h3 {
       margin-top: 0;
       color: #58a6ff;
     }
 
-    .notice p {
-      font-size: 0.95em;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-
-    .notice button {
+    .privacy-notice button {
+      margin-right: 10px;
+      margin-top: 10px;
       background: #238636;
       color: white;
       border: none;
@@ -94,152 +86,120 @@
       cursor: pointer;
     }
 
-    /* PRIVACY POLICY SECTION */
-    #privacy {
-      margin-top: 80px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+    .details-btn {
+      background: #30363d;
     }
 
-    #privacy h2 {
-      color: #58a6ff;
+    .privacy-details {
+      display: none;
+      margin-top: 15px;
+      font-size: 0.9em;
+      line-height: 1.5;
+      color: #c9d1d9;
+      border-top: 1px solid #333;
+      padding-top: 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- LANGUAGE -->
-  <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">PL</button>
+<button class="lang-btn" onclick="toggleLang()" id="langBtn">PL</button>
 
-  <!-- CONTENT -->
-  <h1>Ignacy Tech</h1>
-  <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
+<h1>Ignacy Tech</h1>
+<p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
 
-  <a class="button yt" href="https://www.youtube.com/" target="_blank">YouTube</a>
-  <a class="button dc" href="https://discord.gg/" target="_blank">Discord</a>
-  <a class="button ig" href="https://www.instagram.com/" target="_blank">Instagram</a>
+<a class="button yt" href="https://www.youtube.com/" target="_blank">YouTube</a>
+<a class="button dc" href="https://discord.gg/" target="_blank">Discord</a>
+<a class="button ig" href="https://www.instagram.com/" target="_blank">Instagram</a>
 
-  <footer>
-    © 2026 Ignacy Tech •
-    <a href="#privacy" id="footerPrivacy">Polityka prywatności</a>
-  </footer>
+<footer>
+  © 2026 Ignacy Tech •
+  <a href="#privacy">Polityka prywatności</a>
+</footer>
 
-  <!-- PRIVACY POLICY -->
-  <section id="privacy">
-    <h2 id="privacyTitle">Polityka prywatności</h2>
-    <div id="privacyContent"></div>
-  </section>
+<!-- Privacy Notice -->
+<div class="privacy-notice" id="notice">
+  <h3 id="noticeTitle">Privacy Notice</h3>
 
-  <!-- PRIVACY NOTICE -->
-  <div id="privacyNotice" class="notice">
-    <h3 id="noticeTitle">Privacy Notice</h3>
-    <p id="noticeText">
-      Ta strona nie używa plików cookies. Wykorzystywany jest wyłącznie mechanizm
-      localStorage w celach technicznych. Więcej informacji znajdziesz w
-      <a href="#privacy">Polityce prywatności</a>.
+  <p id="noticeText">
+    Ta strona nie używa plików cookies. Wykorzystywany jest wyłącznie mechanizm
+    localStorage w celach technicznych.
+  </p>
+
+  <button class="details-btn" onclick="toggleDetails()" id="detailsBtn">
+    Rozwiń
+  </button>
+
+  <button onclick="acceptNotice()" id="acceptBtn">
+    Rozumiem
+  </button>
+
+  <div class="privacy-details" id="details">
+    <p id="detailsText">
+      Strona Ignacy Tech nie zbiera danych osobowych, nie korzysta z narzędzi
+      analitycznych oraz nie używa cookies. localStorage służy wyłącznie do
+      zapamiętania informacji o wyświetleniu tego komunikatu.
     </p>
-    <button onclick="acceptNotice()" id="noticeBtn">Rozumiem</button>
   </div>
+</div>
 
-  <script>
-    let lang = "pl";
+<script>
+  let lang = "pl";
+  let detailsVisible = false;
+  const notice = document.getElementById("notice");
 
-    const notice = document.getElementById("privacyNotice");
+  function toggleLang() {
+    lang = lang === "pl" ? "en" : "pl";
+    updateLang();
+  }
 
-    function updateLanguage() {
-      if (lang === "pl") {
-        document.documentElement.lang = "pl";
-        document.title = "Ignacy Tech - Kanał Technologiczny";
-        document.getElementById("langBtn").innerText = "PL";
-        document.getElementById("desc").innerText =
-          "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
-
-        document.getElementById("noticeTitle").innerText =
-          "Privacy Notice";
-        document.getElementById("noticeText").innerHTML =
-          `Ta strona <strong>nie używa plików cookies</strong>.
-           Wykorzystywany jest wyłącznie mechanizm <strong>localStorage</strong>
-           w celach technicznych (zapamiętanie informacji).
-           Więcej informacji znajdziesz w
-           <a href="#privacy">Polityce prywatności</a>.`;
-        document.getElementById("noticeBtn").innerText = "Rozumiem";
-
-        document.getElementById("privacyTitle").innerText =
-          "Polityka prywatności";
-        document.getElementById("privacyContent").innerText =
-`Strona Ignacy Tech szanuje prywatność użytkowników.
-
-Strona nie zbiera danych osobowych, nie korzysta z narzędzi analitycznych
-oraz nie używa plików cookies.
-
-Jedynym wykorzystywanym mechanizmem jest localStorage, który służy
-wyłącznie do zapamiętania informacji technicznych, takich jak
-wyświetlenie informacji o prywatności.
-
-Dane te nie są przesyłane do żadnych podmiotów trzecich.
-
-Właścicielem strony jest Ignacy Tech.`;
-
-        document.getElementById("footerPrivacy").innerText =
-          "Polityka prywatności";
-
-      } else {
-        document.documentElement.lang = "en";
-        document.title = "Ignacy Tech - Technology Channel";
-        document.getElementById("langBtn").innerText = "EN";
-        document.getElementById("desc").innerText =
-          "Welcome to the official Ignacy Tech YouTube channel website!";
-
-        document.getElementById("noticeTitle").innerText =
-          "Privacy Notice";
-        document.getElementById("noticeText").innerHTML =
-          `This website <strong>does not use cookies</strong>.
-           Only the <strong>localStorage</strong> mechanism is used
-           for technical purposes.
-           More information is available in the
-           <a href="#privacy">Privacy Policy</a>.`;
-        document.getElementById("noticeBtn").innerText =
-          "I understand";
-
-        document.getElementById("privacyTitle").innerText =
-          "Privacy Policy";
-        document.getElementById("privacyContent").innerText =
-`Ignacy Tech respects the privacy of its users.
-
-This website does not collect personal data, does not use analytics tools,
-and does not use cookies.
-
-The only mechanism used is localStorage, which stores technical information
-such as whether the privacy notice has been displayed.
-
-This data is not shared with any third parties.
-
-The website is operated by Ignacy Tech.`;
-
-        document.getElementById("footerPrivacy").innerText =
-          "Privacy Policy";
-      }
+  function updateLang() {
+    if (lang === "pl") {
+      document.documentElement.lang = "pl";
+      document.title = "Ignacy Tech - Kanał Technologiczny";
+      langBtn.innerText = "PL";
+      desc.innerText = "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!";
+      noticeTitle.innerText = "Privacy Notice";
+      noticeText.innerText =
+        "Ta strona nie używa plików cookies. Wykorzystywany jest wyłącznie mechanizm localStorage w celach technicznych.";
+      detailsBtn.innerText = detailsVisible ? "Zwiń" : "Rozwiń";
+      acceptBtn.innerText = "Rozumiem";
+      detailsText.innerText =
+        "Strona Ignacy Tech nie zbiera danych osobowych, nie korzysta z narzędzi analitycznych oraz nie używa cookies. localStorage służy wyłącznie do zapamiętania informacji o wyświetleniu tego komunikatu.";
+    } else {
+      document.documentElement.lang = "en";
+      document.title = "Ignacy Tech - Technology Channel";
+      langBtn.innerText = "EN";
+      desc.innerText = "Welcome to the official Ignacy Tech YouTube channel website!";
+      noticeTitle.innerText = "Privacy Notice";
+      noticeText.innerText =
+        "This website does not use cookies. Only localStorage is used for technical purposes.";
+      detailsBtn.innerText = detailsVisible ? "Hide details" : "Show details";
+      acceptBtn.innerText = "I understand";
+      detailsText.innerText =
+        "Ignacy Tech does not collect personal data, does not use analytics tools, and does not use cookies. localStorage is only used to remember that this notice was shown.";
     }
+  }
 
-    function acceptNotice() {
-      localStorage.setItem("privacyNoticeSeen", "true");
-      notice.classList.add("hidden");
-    }
+  function toggleDetails() {
+    detailsVisible = !detailsVisible;
+    document.getElementById("details").style.display =
+      detailsVisible ? "block" : "none";
+    updateLang();
+  }
 
-    function toggleLanguage() {
-      lang = lang === "pl" ? "en" : "pl";
-      updateLanguage();
-    }
+  function acceptNotice() {
+    localStorage.setItem("privacyNoticeSeen", "true");
+    notice.classList.add("hidden");
+  }
 
-    updateLanguage();
+  updateLang();
 
-    if (localStorage.getItem("privacyNoticeSeen")) {
-      notice.classList.add("hidden");
-    }
-  </script>
+  if (localStorage.getItem("privacyNoticeSeen")) {
+    notice.classList.add("hidden");
+  }
+</script>
 
 </body>
 </html>
