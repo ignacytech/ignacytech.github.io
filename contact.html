@@ -3,163 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Skontaktuj się z Ignacy Tech w sprawie współpracy i kontaktu biznesowego.">
+  <meta name="theme-color" content="#000000">
   <title>Kontakt – Ignacy Tech</title>
-
   <style>
     :root {
-      --bg: #000000;
-      --text: #c9d1d9;
-      --card: #0d1117;
-      --btn-bg: white;
-      --btn-text: black;
-      --accent: #58a6ff;
+      color-scheme: dark;
+      --bg: #000000; --text: #e6edf3; --card: #0d1117;
+      --btn-bg: #ffffff; --btn-text: #111111; --accent: #79b8ff; --muted: #a1aab4;
     }
-
     body.light {
-      --bg: #ffffff;
-      --text: #111111;
-      --card: #f3f3f3;
-      --btn-bg: black;
-      --btn-text: white;
+      color-scheme: light;
+      --bg: #ffffff; --text: #1f2328; --card: #f6f8fa;
+      --btn-bg: #1f2328; --btn-text: #ffffff; --accent: #0969da; --muted: #57606a;
     }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      transition: background 0.3s ease, color 0.3s ease;
+      min-height: 100vh; margin: 0; padding: 88px 16px 28px;
+      display: grid; place-items: center;
+      background: var(--bg); color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     }
-
-    .top-right {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+    .top-right { position: absolute; top: 16px; right: 16px; }
+    .lang-btn, .copy {
+      min-height: 48px; padding: 12px 18px; border: 1px solid var(--muted);
+      border-radius: 12px; cursor: pointer; font: inherit; font-weight: 700;
+      background: var(--btn-bg); color: var(--btn-text);
     }
-
-    .lang-btn {
-      padding: 10px 16px;
-      border-radius: 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-    }
-
     .card {
-      background: var(--card);
-      padding: 30px;
-      border-radius: 16px;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      width: min(100%, 460px); padding: clamp(22px, 6vw, 34px);
+      border-radius: 16px; background: var(--card); text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,.35);
     }
-
-    h1 {
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1em;
-    }
-
+    h1 { margin: 0 0 10px; color: var(--accent); font-size: clamp(1.8rem, 6vw, 2.3rem); }
+    p { margin: 0 0 20px; font-size: 1.1rem; line-height: 1.6; }
     .email {
-      background: var(--bg);
-      padding: 12px;
-      border-radius: 10px;
-      font-family: monospace;
-      margin-bottom: 15px;
-      word-break: break-all;
+      margin-bottom: 16px; padding: 14px 12px; border-radius: 10px;
+      background: var(--bg); font: 600 1rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+      overflow-wrap: anywhere;
     }
-
-    button.copy {
-      padding: 12px 20px;
-      border-radius: 10px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      transition: transform 0.2s ease, opacity 0.3s ease;
-    }
-
-    button.copy:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-
-    .back {
-      display: block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #8b949e;
-      font-size: 0.9em;
-    }
+    .copy { border: 0; }
+    .copy:hover, .lang-btn:hover { filter: brightness(.9); }
+    .back { display: inline-block; min-height: 48px; margin-top: 18px; padding: 12px 8px; color: var(--muted); font-size: 1rem; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   </style>
 </head>
-<body class="dark">
-
-  <!-- Language switch -->
+<body>
   <div class="top-right">
-    <button class="lang-btn" onclick="toggleLang()">PL</button>
+    <button class="lang-btn" id="langToggle" type="button" aria-label="Zmień język na angielski" onclick="toggleLang()">PL</button>
   </div>
-
-  <div class="card">
+  <main class="card">
     <h1 id="title">Kontakt</h1>
     <p id="subtitle">Współpraca i kontakt biznesowy</p>
-
-    <div class="email" id="email">
-      kanal.jozwinski@gmail.com
-    </div>
-
-    <button class="copy" id="copyBtn" onclick="copyEmail()">
-      📋 Kopiuj e-mail
-    </button>
-
-    <a href="index.html" class="back" id="backLink">
-      ← Powrót do strony głównej
-    </a>
-  </div>
-
+    <div class="email"><a href="mailto:kanal.jozwinski@gmail.com">kanal.jozwinski@gmail.com</a></div>
+    <button class="copy" id="copyBtn" type="button" onclick="copyEmail()">📋 Kopiuj e-mail</button>
+    <div><a href="index.html" class="back" id="backLink">← Powrót do strony głównej</a></div>
+    <p id="copyStatus" role="status" aria-live="polite" style="margin:12px 0 0;font-size:.95rem"></p>
+  </main>
   <script>
     let lang = "pl";
-
+    const email = "kanal.jozwinski@gmail.com";
     function toggleLang() {
       lang = lang === "pl" ? "en" : "pl";
       document.documentElement.lang = lang;
-      document.querySelector(".lang-btn").innerText = lang.toUpperCase();
-
-      if (lang === "pl") {
-        document.title = "Kontakt – Ignacy Tech";
-        document.getElementById("title").innerText = "Kontakt";
-        document.getElementById("subtitle").innerText = "Współpraca i kontakt biznesowy";
-        document.getElementById("copyBtn").innerText = "📋 Kopiuj e-mail";
-        document.getElementById("backLink").innerText = "← Powrót do strony głównej";
-      } else {
-        document.title = "Contact – Ignacy Tech";
-        document.getElementById("title").innerText = "Contact";
-        document.getElementById("subtitle").innerText = "Business & collaboration";
-        document.getElementById("copyBtn").innerText = "📋 Copy email";
-        document.getElementById("backLink").innerText = "← Back to homepage";
+      document.title = lang === "pl" ? "Kontakt – Ignacy Tech" : "Contact – Ignacy Tech";
+      document.getElementById("langToggle").textContent = lang.toUpperCase();
+      document.getElementById("langToggle").setAttribute("aria-label", lang === "pl" ? "Zmień język na angielski" : "Change language to Polish");
+      document.getElementById("title").textContent = lang === "pl" ? "Kontakt" : "Contact";
+      document.getElementById("subtitle").textContent = lang === "pl" ? "Współpraca i kontakt biznesowy" : "Business & collaboration";
+      document.getElementById("copyBtn").textContent = lang === "pl" ? "📋 Kopiuj e-mail" : "📋 Copy email";
+      document.getElementById("backLink").textContent = lang === "pl" ? "← Powrót do strony głównej" : "← Back to homepage";
+      document.getElementById("copyStatus").textContent = "";
+    }
+    async function copyEmail() {
+      const status = document.getElementById("copyStatus");
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const field = document.createElement("textarea");
+          field.value = email; field.setAttribute("readonly", "");
+          field.style.position = "absolute"; field.style.left = "-9999px";
+          document.body.appendChild(field); field.select();
+          const copied = document.execCommand("copy");
+          field.remove();
+          if (!copied) throw new Error("Copy failed");
+        }
+        status.textContent = lang === "pl" ? "E-mail skopiowany do schowka." : "Email copied to clipboard.";
+      } catch (error) {
+        status.textContent = lang === "pl" ? "Nie udało się skopiować. Zaznacz adres e-mail i skopiuj go ręcznie." : "Copy failed. Select the email address and copy it manually.";
       }
     }
-
-    function copyEmail() {
-      const email = "kanal.jozwinski@gmail.com";
-      navigator.clipboard.writeText(email);
-      alert(lang === "pl"
-        ? "E-mail skopiowany do schowka!"
-        : "Email copied to clipboard!");
-    }
   </script>
-
 </body>
 </html>
