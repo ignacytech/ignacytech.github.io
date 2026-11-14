@@ -3,209 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ignacy Tech - Kanał Technologiczny</title>
-
+  <meta name="description" content="Oficjalna strona Ignacy Tech — kanału o technologii. Znajdź nas na YouTube, Discordzie i Instagramie.">
+  <meta name="theme-color" content="#000000">
+  <title>Ignacy Tech – Kanał Technologiczny</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
   <style>
     :root {
+      color-scheme: dark;
       --bg: #000000;
-      --text: #c9d1d9;
+      --text: #e6edf3;
       --card: #0d1117;
-      --accent: #58a6ff;
-      --btn-bg: white;
-      --btn-text: black;
+      --accent: #79b8ff;
+      --btn-bg: #ffffff;
+      --btn-text: #111111;
+      --muted: #a1aab4;
     }
-
     body.light {
+      color-scheme: light;
       --bg: #ffffff;
-      --text: #111111;
-      --card: #f3f3f3;
-      --btn-bg: black;
-      --btn-text: white;
+      --text: #1f2328;
+      --card: #f6f8fa;
+      --accent: #0969da;
+      --btn-bg: #1f2328;
+      --btn-text: #ffffff;
+      --muted: #57606a;
     }
-
+    * { box-sizing: border-box; }
     body {
+      min-height: 100vh;
       margin: 0;
-      padding: 40px;
-      background-color: var(--bg);
+      padding: 88px 20px 28px;
+      background: var(--bg);
       color: var(--text);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       text-align: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color .2s ease, color .2s ease;
     }
-
-    /* Top buttons */
-    .top-left, .top-right {
-      position: fixed;
-      top: 20px;
-      z-index: 1000;
-    }
-
-    .top-left { left: 20px; }
-    .top-right { right: 20px; }
-
+    .top-left, .top-right { position: absolute; top: 16px; z-index: 2; }
+    .top-left { left: 16px; }
+    .top-right { right: 16px; }
     .top-btn {
+      min-width: 48px;
+      min-height: 48px;
       padding: 10px 16px;
-      border-radius: 20px;
-      border: none;
+      border: 1px solid var(--muted);
+      border-radius: 24px;
       cursor: pointer;
-      font-weight: bold;
+      font: inherit;
+      font-weight: 700;
       background: var(--btn-bg);
       color: var(--btn-text);
     }
-
-    img.logo {
+    main { width: min(100%, 760px); margin: 0 auto; }
+    .logo {
+      display: block;
       width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin: 0 auto 20px;
       border-radius: 20px;
-      margin-bottom: 20px;
       box-shadow: 0 0 15px var(--accent);
     }
-
-    h1 {
-      font-size: 3em;
-      color: var(--accent);
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
+    h1 { margin: 0 0 12px; color: var(--accent); font-size: clamp(2rem, 7vw, 3rem); }
+    #desc { margin: 0 auto 28px; font-size: 1.15rem; line-height: 1.6; }
+    .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .buttons a {
-      display: inline-block;
-      padding: 15px 25px;
-      margin: 10px;
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
       border-radius: 12px;
       text-decoration: none;
-      font-weight: bold;
-      color: white;
-      transition: transform 0.2s ease, opacity 0.3s ease;
+      font-weight: 700;
+      color: #ffffff;
+      transition: transform .2s ease, filter .2s ease;
     }
-
-    .buttons a:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+    .buttons a:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .buttons a:focus-visible, .top-btn:focus-visible, footer a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
     }
-
-    .yt { background: #ff0000; }
-    .dc { background: #5865F2; }
-    .ig {
-      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+    .yt { background: #c52222; }
+    .dc { background: #4752c4; }
+    .ig { background: linear-gradient(45deg, #963b00, #a51d5a, #63258a, #3440a8); }
+    .site-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 34px;
     }
-
-    /* GitHub button */
-    .github {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
+    .site-links a {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
       padding: 12px 18px;
-      border-radius: 20px;
-      font-weight: bold;
-      text-decoration: none;
+      border-radius: 24px;
       background: var(--btn-bg);
       color: var(--btn-text);
-    }
-
-    /* Contact button */
-    .contact {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 14px 22px;
-      border-radius: 30px;
-      font-weight: bold;
       text-decoration: none;
-      background: var(--btn-bg);
-      color: var(--btn-text);
+      font-weight: 700;
     }
-
-    footer {
-      margin-top: 60px;
-      font-size: 0.9em;
-      color: #8b949e;
+    footer { margin: 36px auto 0; color: var(--muted); font-size: 1rem; line-height: 1.6; }
+    footer a { color: inherit; }
+    @media (max-width: 420px) {
+      body { padding: 82px 16px 24px; }
+      .buttons { flex-direction: column; }
+      .buttons a, .site-links a { width: 100%; }
+      .logo { width: 132px; height: 132px; }
     }
-
-    footer a {
-      color: inherit;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
   </style>
 </head>
-
-<body class="dark">
-
-  <!-- Theme toggle -->
+<body>
   <div class="top-left">
-    <button class="top-btn" onclick="toggleTheme()">🌑</button>
+    <button class="top-btn" id="themeToggle" type="button" aria-label="Włącz jasny motyw" onclick="toggleTheme()">🌑</button>
   </div>
-
-  <!-- Language toggle -->
   <div class="top-right">
-    <button class="top-btn" onclick="toggleLang()">PL</button>
+    <button class="top-btn" id="langToggle" type="button" aria-label="Change language to English" onclick="toggleLang()">PL</button>
   </div>
 
-  <img src="channels4_profile.jpg" alt="Ignacy Tech Logo" class="logo">
-
-  <h1>Ignacy Tech</h1>
-  <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
-
-  <div class="buttons">
-    <a class="yt" id="yt" href="https://www.youtube.com/channel/UCBPIpGz2inVNYAAFuCQIDPQ" target="_blank">
-      📺 Subskrybuj na YouTube
-    </a>
-
-    <a class="dc" id="dc" href="https://discord.gg/BUxAHcsUWY" target="_blank">
-      💬 Dołącz na Discord
-    </a>
-
-    <a class="ig" id="ig" href="https://www.instagram.com/ignacy_tech/" target="_blank">
-      📸 Obserwuj na Instagramie
-    </a>
-  </div>
-
-  <a class="github" id="gh" href="https://github.com/ignacytech/ignacytech.github.io" target="_blank">
-    Repozytorium GitHub
-  </a>
-
-  <a class="contact" href="contact.html">✉️ Kontakt</a>
-
-  <footer>
-    © 2026 Ignacy Tech • <a href="privacy.html">Privacy Policy</a>
-  </footer>
+  <main>
+    <img src="channels4_profile.jpg" alt="Logo kanału Ignacy Tech" class="logo" width="150" height="150">
+    <h1>Ignacy Tech</h1>
+    <p id="desc">Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!</p>
+    <nav class="buttons" aria-label="Media społecznościowe">
+      <a class="yt" id="yt" href="https://www.youtube.com/channel/UCBPIpGz2inVNYAAFuCQIDPQ" target="_blank" rel="noopener noreferrer">📺 Subskrybuj na YouTube</a>
+      <a class="dc" id="dc" href="https://discord.gg/BUxAHcsUWY" target="_blank" rel="noopener noreferrer">💬 Dołącz na Discord</a>
+      <a class="ig" id="ig" href="https://www.instagram.com/ignacy_tech/" target="_blank" rel="noopener noreferrer">📸 Obserwuj na Instagramie</a>
+    </nav>
+    <div class="site-links">
+      <a id="gh" href="https://github.com/ignacytech/ignacytech.github.io" target="_blank" rel="noopener noreferrer">Repozytorium GitHub</a>
+      <a id="contactLink" href="contact.html">✉️ Kontakt</a>
+    </div>
+  </main>
+  <footer>© 2026 Ignacy Tech • <a id="privacyLink" href="privacy.html">Polityka prywatności</a></footer>
 
   <script>
     let lang = "pl";
     let dark = true;
-
     function toggleLang() {
       lang = lang === "pl" ? "en" : "pl";
-      document.querySelector(".top-right button").innerText = lang.toUpperCase();
-
-      document.getElementById("desc").innerText =
-        lang === "pl"
-          ? "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!"
-          : "Welcome to the official Ignacy Tech YouTube channel website!";
-
-      document.getElementById("yt").innerText =
-        lang === "pl" ? "📺 Subskrybuj na YouTube" : "📺 Subscribe on YouTube";
-
-      document.getElementById("dc").innerText =
-        lang === "pl" ? "💬 Dołącz na Discord" : "💬 Join Discord";
-
-      document.getElementById("ig").innerText =
-        lang === "pl" ? "📸 Obserwuj na Instagramie" : "📸 Follow on Instagram";
-
-      document.getElementById("gh").innerText =
-        lang === "pl" ? "Repozytorium GitHub" : "GitHub Repository";
+      document.documentElement.lang = lang;
+      document.title = lang === "pl" ? "Ignacy Tech – Kanał Technologiczny" : "Ignacy Tech – Technology Channel";
+      document.getElementById("langToggle").textContent = lang.toUpperCase();
+      document.getElementById("langToggle").setAttribute("aria-label", lang === "pl" ? "Zmień język na angielski" : "Change language to Polish");
+      document.getElementById("desc").textContent = lang === "pl"
+        ? "Witaj na oficjalnej stronie kanału YouTube Ignacy Tech!"
+        : "Welcome to the official Ignacy Tech YouTube channel website!";
+      document.getElementById("yt").textContent = lang === "pl" ? "📺 Subskrybuj na YouTube" : "📺 Subscribe on YouTube";
+      document.getElementById("dc").textContent = lang === "pl" ? "💬 Dołącz na Discord" : "💬 Join Discord";
+      document.getElementById("ig").textContent = lang === "pl" ? "📸 Obserwuj na Instagramie" : "📸 Follow on Instagram";
+      document.getElementById("gh").textContent = lang === "pl" ? "Repozytorium GitHub" : "GitHub Repository";
+      document.getElementById("contactLink").textContent = lang === "pl" ? "✉️ Kontakt" : "✉️ Contact";
+      document.getElementById("privacyLink").textContent = lang === "pl" ? "Polityka prywatności" : "Privacy Policy";
     }
-
     function toggleTheme() {
       dark = !dark;
       document.body.classList.toggle("light", !dark);
-      document.querySelector(".top-left button").innerText = dark ? "🌑" : "☀️";
+      document.getElementById("themeToggle").textContent = dark ? "🌑" : "☀️";
+      document.getElementById("themeToggle").setAttribute("aria-label", dark ? "Włącz jasny motyw" : "Włącz ciemny motyw");
+      document.querySelector('meta[name="theme-color"]').content = dark ? "#000000" : "#ffffff";
     }
   </script>
-
 </body>
 </html>
-
